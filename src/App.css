@@ -1,9 +1,25 @@
+* {
+  font-family: 'Quicksand', sans-serif;
+}
 .App {
+  --theme-background: #636b7a;
   --theme-main: #282c34;
   --theme-contrast: #61dafb;
+  --theme-contrast-light: #b4efff;
   --theme-dark: #1e1e21;
-  display: grid;
-  place-items: center;
+  --theme-dark-transparent: rgb(30, 30, 33, 0.75);
+  --font-main: font-family: 'Quicksand', sans-serif;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+
+  background: var(--theme-background);
+
+  overflow-y: hidden;
 }
 
 .App-logo {
@@ -35,4 +51,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.pointer {
+  cursor: pointer;
 }

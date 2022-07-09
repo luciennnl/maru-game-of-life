@@ -2,9 +2,10 @@ import { createContext, useRef, useState } from 'react';
 import Cell from './Cell';
 import './Game.css';
 import { GameOfLife, Grid } from './GameOfLife';
+import PopupMenu from './PopupMenu';
 
-const rows = 75;
-const cols = 100;
+const rows = 50;
+const cols = 50;
 
 const GameContext = createContext(null);
 
@@ -18,22 +19,37 @@ function Game() {
         });
     }
 
-    const onGameStart = () => {
-        gameTick.current = setInterval(tick, 500);
-        setGameState(prev => {
-            prev.init = true;
-            return { ...prev };
-        });
-    }
-
-    const onGameEnd = () => {
-        clearInterval(gameTick.current);
-        setGameState(prev => {
-            prev.init = false;
-            return { ...prev };
-        });
-    }
-    
+    const functions = [
+        !gameState.init ? {
+            callback: () => {
+                gameTick.current = setInterval(tick, 500);
+                setGameState(prev => {
+                    prev.init = true;
+                    return { ...prev };
+                });
+            },
+            name: 'Start'
+        } : {
+            callback: () => {
+                clearInterval(gameTick.current);
+                setGameState(prev => {
+                    prev.init = false;
+                    return { ...prev };
+                });
+            },
+            name: 'Stop'
+        },
+        {
+            callback: () => {
+                setGameState(prev => {
+                    prev.init = false;
+                    prev.state.grid.resetGrid();
+                    return { ...prev };
+                })
+            },
+            name: 'Reset'
+        }
+    ]
     return <GameContext.Provider value={ gameState }>
         <section id='game-main' style={{
         gridTemplateRows: `repeat(${rows}, 1fr)`,
@@ -41,7 +57,7 @@ function Game() {
         }}>
             { new Array(rows * cols).fill().map((val, idx) => <Cell row={ Math.floor(idx / cols) } col={ idx % cols } key={idx}/>) }
         </section>
-        <button className='game-button' onClick={gameState.init ? onGameEnd : onGameStart}>{ gameState.init ? "Stop" : "Start" }</button>
+        <PopupMenu functions={functions}/>
     </GameContext.Provider>
 }
 

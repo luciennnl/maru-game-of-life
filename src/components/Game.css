@@ -5,20 +5,19 @@
     background: var(--theme-dark);
 
     display: grid;
-    grid-template-rows: repeat(100, 1fr);
-    grid-template-columns: repeat(100, 1fr);
     grid-gap: 1px;
+
+    place-content: center;
+
+    box-shadow: 1px 1px 3px 4px var(--theme-dark);
 }
 
-.game-button {
-    color: white;
+#game-menu {
 
-    background: var(--theme-dark);
-    border-radius: 5px;
-    box-shadow: 1px 1px 2px 1px var(--theme-contrast);
+    width: 100%;
 
-    font-size: 1.5rem;
-    padding: 5px 20px;
-
-    cursor: pointer;
+    background: var(--theme-dark-transparent);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }

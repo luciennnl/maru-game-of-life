@@ -27,6 +27,14 @@ class Grid {
         this.data[row][col] = value;
     }
 
+    resetGrid() {
+        for (let row = 0; row < this.rows; ++row) {
+            for (let col = 0; col < this.cols; ++col) {
+                this.setCell(row, col, this.defaultValue);
+            }
+        }
+    }
+    
     isNeighbour(row, col, oRow, oCol) {
         return (Math.abs(row - oRow) <= 1 && Math.abs(col - oCol) <= 1)
     }
