@@ -2,8 +2,8 @@
 
 A simulator for the famous Conway's Game of Life made with React.
 
-Currently deployed on GitHub pages, access the simulation now:
-<a href="https://lucien7789.github.io/maru-game-of-life/"/>
+Currently deployed on GitHub pages, access the simulation now:  
+https://lucien7789.github.io/maru-game-of-life/
 ## Getting Started
 
 First, download the repository.
