@@ -5,14 +5,15 @@ import { GameOfLife, Grid } from '../../../domain/GameOfLife';
 import PopupMenu from '../../structural/popupMenu/PopupMenu';
 import ButtonList from '../../structural/buttonList/ButtonList';
 
-const rows = 50;
-const cols = 50;
+const rows = 36;
+const cols = 64;
 
 const GameContext = createContext(null);
 
 function Game() {
     const [gameState, setGameState] = useState({ init: false, state: new GameOfLife(new Grid(rows, cols, false)) });
     const gameTick = useRef(null);
+
     const tick = () => {
         setGameState(prev => {
             prev.state.tick()
