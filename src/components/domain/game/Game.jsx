@@ -1,8 +1,9 @@
 import { createContext, useRef, useState } from 'react';
 import Cell from './Cell';
 import './Game.css';
-import { GameOfLife, Grid } from './GameOfLife';
-import PopupMenu from './PopupMenu';
+import { GameOfLife, Grid } from '../../../domain/GameOfLife';
+import PopupMenu from '../../structural/popupMenu/PopupMenu';
+import ButtonList from '../../structural/buttonList/ButtonList';
 
 const rows = 50;
 const cols = 50;
@@ -57,7 +58,9 @@ function Game() {
         }}>
             { new Array(rows * cols).fill().map((val, idx) => <Cell row={ Math.floor(idx / cols) } col={ idx % cols } key={idx}/>) }
         </section>
-        <PopupMenu functions={functions}/>
+        <PopupMenu functions={functions}>
+            <ButtonList functions={functions}/>
+        </PopupMenu>
     </GameContext.Provider>
 }
 

@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
-import Game from './components/Game';
-import TitleBanner from './components/TitleBanner';
-import PopupMenu from './components/PopupMenu';
+import Game from './components/domain/game/Game';
+import TitleBanner from './components/structural/titleBanner/TitleBanner';
 
 function App() {
   return (

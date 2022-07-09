@@ -107,7 +107,7 @@ class GameOfLife {
     }
 
     checkDeadCell(row, col) {
-        return (this.getAliveNeighbourCount(row, col) == birthValue);
+        return (this.getAliveNeighbourCount(row, col) === birthValue);
     }
 
     checkActiveCell(row, col) {

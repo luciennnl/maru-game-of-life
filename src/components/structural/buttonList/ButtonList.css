@@ -1,0 +1,25 @@
+.button-list {
+    display: flex;
+}
+
+.button-list-button {
+    position: relative;
+
+    color: white;
+
+    background: var(--theme-dark);
+    border-radius: 5px;
+
+    font-size: 1.5rem;
+    padding: 5px 20px;
+
+    cursor: pointer;
+
+    font-family: var(--font-main);
+
+    transition: 0.1s ease-out;
+
+    box-shadow: 1px 1px 2px 1px var(--theme-contrast), 0 0 0 0 inset var(--theme-contrast);
+
+    overflow: hidden;
+}
