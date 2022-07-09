@@ -1,7 +1,7 @@
 .cell {
-    background-color: #282c34;
+    background-color: var(--theme-main);
 }
 
 .cell-active {
-    background-color: #61dafb !important;
+    background-color: var(--theme-contrast) !important;
 }

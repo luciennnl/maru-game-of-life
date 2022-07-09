@@ -64,6 +64,7 @@ const deathThreshold = 1
 class GameOfLife {
     constructor(grid) {
         this.grid = grid;
+        this.init = false;
     }
 
     setActive(row, col, isActive) {

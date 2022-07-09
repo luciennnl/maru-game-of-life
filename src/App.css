@@ -1,4 +1,7 @@
 .App {
+  --theme-main: #282c34;
+  --theme-contrast: #61dafb;
+  --theme-dark: #1e1e21;
   display: grid;
   place-items: center;
 }
@@ -23,10 +26,6 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 @keyframes App-logo-spin {

@@ -2,10 +2,23 @@
     height: 75vh;
     width: 75vw;
     
-    background: #1e1e21;
+    background: var(--theme-dark);
 
     display: grid;
     grid-template-rows: repeat(100, 1fr);
     grid-template-columns: repeat(100, 1fr);
     grid-gap: 1px;
+}
+
+.game-button {
+    color: white;
+
+    background: var(--theme-dark);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px 1px var(--theme-contrast);
+
+    font-size: 1.5rem;
+    padding: 5px 20px;
+
+    cursor: pointer;
 }
