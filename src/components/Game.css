@@ -1,0 +1,11 @@
+#game-main {
+    height: 75vh;
+    width: 75vw;
+    
+    background: #1e1e21;
+
+    display: grid;
+    grid-template-rows: repeat(100, 1fr);
+    grid-template-columns: repeat(100, 1fr);
+    grid-gap: 1px;
+}
