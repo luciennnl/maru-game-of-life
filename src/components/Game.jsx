@@ -16,11 +16,10 @@ function Game() {
             prev.state.tick()
             return { ...prev };
         });
-        console.log("test");
     }
 
     const onGameStart = () => {
-        gameTick.current = setInterval(tick, 200);
+        gameTick.current = setInterval(tick, 500);
         setGameState(prev => {
             prev.init = true;
             return { ...prev };

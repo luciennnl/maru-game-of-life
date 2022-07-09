@@ -3,9 +3,22 @@ class Grid {
     constructor(rows, cols, defaultValue) {
         this.rows = rows;
         this.cols = cols;
+        this.defaultValue = defaultValue;
         this.data = new Array(rows).fill().map(() => new Array(cols).fill(defaultValue));
     }
     
+    static clone(grid) {
+        var newGrid = new Grid(grid.rows, grid.cols, grid.defaultValue);
+        
+        for (let row = 0; row < grid.rows; ++row) {
+            for (let col = 0; col < grid.cols; ++col) {
+                newGrid.data[row][col] = grid.getCell(row, col);
+            }
+        }
+
+        return newGrid;
+    }
+
     getCell(row, col) {
         return this.data[row][col];
     }
@@ -59,7 +72,8 @@ class Grid {
     }
 }
 
-const birthThreshold = 3
+const overpopulationThreshold = 4
+const birthValue = 3
 const deathThreshold = 1
 class GameOfLife {
     constructor(grid) {
@@ -67,14 +81,17 @@ class GameOfLife {
         this.init = false;
     }
 
-    setActive(row, col, isActive) {
-        this.grid.setCell(row, col, isActive);
-    }
-
     tick() {
+        let newGrid = Grid.clone(this.grid);
         for (let cell of this.grid.cells()) {
-            (cell.value) ? this.checkActiveCell(cell.row, cell.col) : this.checkDeadCell(cell.row, cell.col);
+            if (cell.value) {
+                this.checkActiveCell(cell.row, cell.col) && newGrid.setCell(cell.row, cell.col, false);
+            } else {
+                this.checkDeadCell(cell.row, cell.col) && newGrid.setCell(cell.row, cell.col, true);
+            } 
         }
+
+        this.grid = newGrid;
     }
 
     getAliveNeighbourCount(row, col) {
@@ -82,15 +99,11 @@ class GameOfLife {
     }
 
     checkDeadCell(row, col) {
-        if (this.getAliveNeighbourCount(row, col) >= birthThreshold) {
-            this.setActive(row, col, true);
-        }
+        return (this.getAliveNeighbourCount(row, col) == birthValue);
     }
 
     checkActiveCell(row, col) {
-        if (this.getAliveNeighbourCount(row, col)  <= deathThreshold) {
-            this.setActive(row, col, false);
-        }
+        return (this.getAliveNeighbourCount(row, col)  <= deathThreshold) || (this.getAliveNeighbourCount(row, col)  >= overpopulationThreshold);
     }
 }
 

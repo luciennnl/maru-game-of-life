@@ -8,10 +8,12 @@ function Cell({ row, col }) {
     useEffect(() => setActive(gameContext.state.grid.getCell(row, col)), [gameContext, row, col]);
     
     const onClick = () => {
+        let status = active;
         if (gameContext.init) {
             return;
         }
         setActive(status => !status);
+        gameContext.state.grid.setCell(row, col, !status);
     }
     return <div className={`cell ${ active ? "cell-active" : ""}`} onClick={onClick} >
 
