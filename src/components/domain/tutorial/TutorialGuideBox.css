@@ -1,0 +1,45 @@
+.arrow-up {
+    transform: rotate(0);
+}
+
+.arrow-right {
+    transform: rotate(90deg);
+}
+
+.arrow-down {
+    transform: rotate(180deg);
+}
+
+.arrow-left {
+    transform: rotate(270deg);
+}
+
+.tutorial-guide-box {
+    position: absolute;
+
+    padding: 10px;
+    margin: 10px;
+
+    color: white;
+
+    background: var(--theme-dark);
+
+    border-radius: 15px;
+
+    z-index: 2;
+
+    box-shadow: 1px 1px 2px 1px var(--theme-contrast);
+
+    cursor: pointer;
+
+    animation: 0.2s fadein;
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
