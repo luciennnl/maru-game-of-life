@@ -37,7 +37,6 @@ class GameOfLife {
     public static clone(original : GameOfLife) : GameOfLife {
         let cloned = new GameOfLife();
         cloned.grid = Grid.clone(original.grid);
-        console.log(cloned.grid === original.grid);
         return cloned;
     }
     protected getAliveNeighbourCount(cell : Cell<CellStatus>) : number {
