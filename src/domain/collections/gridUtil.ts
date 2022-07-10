@@ -5,7 +5,7 @@ class GridUtil {
     private static instance : GridUtil | null = null;
     private constructor() {}
 
-    public static getInstance<T>() : GridUtil {
+    public static getInstance() : GridUtil {
         if (GridUtil.instance === null) {
             GridUtil.instance = new GridUtil();
         }
