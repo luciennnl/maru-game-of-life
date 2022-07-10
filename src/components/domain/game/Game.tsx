@@ -1,22 +1,21 @@
 import React, { createContext, useRef, useState, FC } from 'react';
 import Cell from './Cell';
 import './Game.css';
-import { GameOfLife, Grid } from '../../../domain/GameOfLife';
+import { GameOfLife } from '../../../domain/GameOfLife';
 import PopupMenu from '../../structural/popupMenu/PopupMenu';
 import ButtonList from '../../structural/buttonList/ButtonList';
-import GameConfiguration from '../../../domain/GameConfiguration';
 
 enum GameStatus {
     STARTED,
     STOPPED
 }
 
-interface GameContext {
+interface GameContextStructure {
     game: GameOfLife;
     status: GameStatus;
 }
 
-const GameContext = createContext<GameContext | null>(null);
+const GameContext = createContext<GameContextStructure | null>(null);
 
 const Game : FC = () => {
     const [gameContext, setGameContext] = useState({ game: new GameOfLife(), status: GameStatus.STOPPED });
@@ -60,7 +59,7 @@ const Game : FC = () => {
             name: 'Reset'
         }
     ]
-    let {rows, cols} = GameConfiguration.gameMapSize
+    let {rows, cols} = gameContext.game.grid.gridSize;
     return <GameContext.Provider value={ gameContext }>
         <section id='game-main' style={{
         gridTemplateRows: `repeat(${rows}, 1fr)`,
