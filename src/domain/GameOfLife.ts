@@ -1,3 +1,5 @@
+import GameConfiguration from "./GameConfiguration";
+
 const neighbourOffset = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
 interface Cell<T> {
     row: number;
@@ -83,6 +85,13 @@ class Grid<T> {
     public inBound(row : number, col : number) : boolean {
         return !(row < 0 || row >= this.rows || col < 0 || col >= this.cols);
     }
+
+    public get gridSize() {
+        return {
+            rows: this.rows,
+            cols: this.cols
+        }
+    }
 }
 
 const overpopulationThreshold = 4
@@ -94,8 +103,9 @@ enum CellStatus {
 }
 class GameOfLife {
     private _grid: Grid<CellStatus>;
-    public constructor(mapSizeRows : number, mapSizeCols : number) {
-        this._grid = new Grid<CellStatus>(mapSizeRows, mapSizeCols, CellStatus.DEAD);
+    public constructor() {
+        let {rows, cols} = GameConfiguration.gameMapSize;
+        this._grid = new Grid<CellStatus>(rows, cols, CellStatus.DEAD);
     }
 
     public tick() : void {
