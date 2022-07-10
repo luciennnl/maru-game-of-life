@@ -27,6 +27,8 @@
     background: var(--theme-light);
 
     box-shadow: 1px 1px 2px 1px var(--theme-dark), 0 0 0 0 inset var(--theme-dark);
+
+    font-weight: bold;
 }
 
 .button-small {
@@ -39,4 +41,58 @@
 
 .button-large {
     width: 12rem;
+}
+
+/**
+ * Begin interactive design css
+ **/
+ 
+.button:active {
+    box-shadow: 0 0 0 0 var(--theme-contrast), 0 0 2px 1px inset var(--theme-contrast);
+}
+
+.button-light:active {
+    box-shadow: 0 0 0 0 var(--theme-dark), 0 0 2px 2px inset var(--theme-dark);
+}
+
+.button::after, .button::before {
+    position: absolute;
+    
+    content: "";
+    display: block;
+
+    height: 2px;
+    width: 100%;
+
+    transition: 0.2s ease-in-out;
+}
+
+.button::before {
+    top: 1px;
+    left: -100%;
+
+    background: linear-gradient(90deg, transparent, white);
+}
+
+.button-light::before {
+    background: linear-gradient(90deg, transparent, black);
+}
+
+.button:hover::before {
+    left: 100%;
+}
+
+.button::after {
+    bottom: 1px;
+    right: -100%;
+
+    background: linear-gradient(270deg, transparent, white);
+}
+
+.button-light::after {
+    background: linear-gradient(270deg, transparent, black);
+}
+
+.button:hover::after {
+    right: 100%;
 }
