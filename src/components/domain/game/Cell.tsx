@@ -1,5 +1,5 @@
 import React, { FC, useContext, useEffect, useRef, useState } from 'react';
-import { CellStatus } from '../../../domain/GameOfLife';
+import { CellStatus } from '../../../domain/game/gameOfLife';
 import { GameContext } from './Game';
 import './Cell.css';
 

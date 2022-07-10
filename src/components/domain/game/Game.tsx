@@ -1,10 +1,11 @@
 import React, { createContext, useRef, useState, FC } from 'react';
 import Cell from './Cell';
 import './Game.css';
-import { GameOfLife } from '../../../domain/GameOfLife';
+import GameOfLife from '../../../domain/game/gameOfLife';
 import PopupMenu from '../../structural/popupMenu/PopupMenu';
 import ButtonList from '../../structural/buttons/ButtonList';
-import { ButtonStyle } from '../../structural/buttons/Button';
+import { ButtonProps, ButtonStyle } from '../../structural/buttons/Button';
+import { useMemo } from 'react';
 
 enum GameStatus {
     STARTED,
@@ -19,8 +20,37 @@ interface GameContextStructure {
 const GameContext = createContext<GameContextStructure | null>(null);
 
 const Game : FC = () => {
-    const [gameContext, setGameContext] = useState({ game: new GameOfLife(), status: GameStatus.STOPPED });
+    const [gameContext, setGameContext] = useState<GameContextStructure>({ game: new GameOfLife(), status: GameStatus.STOPPED });
     const gameTick = useRef<number | undefined>(undefined);
+    const changeGameStatus = (newStatus : GameStatus) => {
+        setGameContext(prev => {
+            prev.status = newStatus;
+            return { ...prev };
+        });
+    }
+    const functions = useMemo<ButtonProps[]>(() => [
+        gameContext.status === GameStatus.STOPPED ? {
+            callback: () => {
+                gameTick.current = window.setInterval(tick, 500);
+                changeGameStatus(GameStatus.STARTED);
+            },
+            name: 'Start'
+        } : {
+            callback: () => {
+                clearInterval(gameTick.current);
+                changeGameStatus(GameStatus.STOPPED);
+            },
+            name: 'Stop'
+        },
+        {
+            callback: () => {
+                gameContext.game.grid.resetGrid();
+                changeGameStatus(GameStatus.STOPPED);
+            },
+            name: 'Reset',
+            style: ButtonStyle.LIGHT
+        }
+    ], [gameContext.status]);
 
     const tick = () => {
         setGameContext(prev => {
@@ -29,48 +59,25 @@ const Game : FC = () => {
         });
     }
 
-    const functions = [
-        gameContext.status === GameStatus.STOPPED ? {
-            callback: () => {
-                gameTick.current = window.setInterval(tick, 500);
-                setGameContext(prev => {
-                    prev.status = GameStatus.STARTED;
-                    return { ...prev };
-                });
-            },
-            name: 'Start'
-        } : {
-            callback: () => {
-                clearInterval(gameTick.current);
-                setGameContext(prev => {
-                    prev.status = GameStatus.STOPPED;
-                    return { ...prev };
-                });
-            },
-            name: 'Stop'
-        },
-        {
-            callback: () => {
-                setGameContext(prev => {
-                    prev.status = GameStatus.STOPPED;
-                    prev.game.grid.resetGrid();
-                    return { ...prev };
-                })
-            },
-            name: 'Reset',
-            style: ButtonStyle.LIGHT
-        }
-    ]
     let {rows, cols} = gameContext.game.grid.gridSize;
-    return <GameContext.Provider value={ gameContext }>
-        <section id='game-main' style={{
-        gridTemplateRows: `repeat(${rows}, 1fr)`,
-        gridTemplateColumns: `repeat(${cols}, 1fr)`
+    
+    return <GameContext.Provider 
+                value={ gameContext }>
+        <section 
+            id='game-main' 
+            style={{
+                gridTemplateRows: `repeat(${rows}, 1fr)`,
+                gridTemplateColumns: `repeat(${cols}, 1fr)`
         }}>
-            { new Array(rows * cols).fill(undefined).map((val, idx) => <Cell row={ Math.floor(idx / cols) } col={ idx % cols } key={idx}/>) }
+            { new Array(rows * cols).fill(undefined).map((val, idx) => 
+                <Cell 
+                    row={ Math.floor(idx / cols) } 
+                    col={ idx % cols } 
+                    key={idx}/>) }
         </section>
         <PopupMenu>
-            <ButtonList buttons={functions}/>
+            <ButtonList 
+                buttons={functions}/>
         </PopupMenu>
     </GameContext.Provider>
 }
