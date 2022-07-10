@@ -1,0 +1,42 @@
+.button {
+    position: relative;
+
+    border-radius: 5px;
+
+    font-size: 1.5rem;
+    padding: 5px 20px;
+
+    cursor: pointer;
+
+    font-family: var(--font-main);
+
+    transition: 0.1s ease-out;
+
+    overflow: hidden;
+}
+
+.button-default {
+    color: white;
+    background: var(--theme-dark);
+
+    box-shadow: 1px 1px 2px 1px var(--theme-contrast), 0 0 0 0 inset var(--theme-contrast);
+}
+
+.button-light {
+    color: black;
+    background: var(--theme-light);
+
+    box-shadow: 1px 1px 2px 1px var(--theme-dark), 0 0 0 0 inset var(--theme-dark);
+}
+
+.button-small {
+    width: 4rem;
+}
+
+.button-medium {
+    width: 8rem;
+}
+
+.button-large {
+    width: 12rem;
+}

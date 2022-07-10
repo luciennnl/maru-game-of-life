@@ -3,7 +3,8 @@ import Cell from './Cell';
 import './Game.css';
 import { GameOfLife } from '../../../domain/GameOfLife';
 import PopupMenu from '../../structural/popupMenu/PopupMenu';
-import ButtonList from '../../structural/buttonList/ButtonList';
+import ButtonList from '../../structural/buttons/ButtonList';
+import { ButtonStyle } from '../../structural/buttons/Button';
 
 enum GameStatus {
     STARTED,
@@ -56,7 +57,8 @@ const Game : FC = () => {
                     return { ...prev };
                 })
             },
-            name: 'Reset'
+            name: 'Reset',
+            style: ButtonStyle.LIGHT
         }
     ]
     let {rows, cols} = gameContext.game.grid.gridSize;
@@ -68,7 +70,7 @@ const Game : FC = () => {
             { new Array(rows * cols).fill(undefined).map((val, idx) => <Cell row={ Math.floor(idx / cols) } col={ idx % cols } key={idx}/>) }
         </section>
         <PopupMenu>
-            <ButtonList functions={functions}/>
+            <ButtonList buttons={functions}/>
         </PopupMenu>
     </GameContext.Provider>
 }
