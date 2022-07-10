@@ -1,4 +1,5 @@
 import React, { FC, useState } from "react";
+import config from "../../../domain/game/gameConfiguration";
 import TutorialGuideBox from "./TutorialGuideBox";
 import './TutorialOverlay.css';
 
@@ -6,12 +7,7 @@ import './TutorialOverlay.css';
 const TutorialOverlay : FC = () => {
     const [activeTutorialBox, setActiveTutorialBox] = useState(0);
 
-    const tutorialBoxes = [
-        (a : boolean) => <TutorialGuideBox key='tb0' active={a} left={'15%'} top={'20%'} text={'Welcome to Maru Game of Life! This is a short tutorial, click here to continue...'} onClick={onClick}/>,
-        (a : boolean) => <TutorialGuideBox key='tb1' active={a} left={'30%'} top={'20%'} text={'\u2190'.concat(' Click on the cells to turn them alive')} onClick={onClick}/>,
-        (a : boolean) => <TutorialGuideBox key='tb2' active={a} left={'52%'} top={'calc(100% - 85px)'} text={'\u2190'.concat(' Click on the triangle to open up the menu')} onClick={onClick}/>,
-        (a : boolean) => <TutorialGuideBox key='tb3' active={a} left={'calc(50% - 3.5rem)'} top={'50%'} text={'Have fun! :))'} onClick={onClick}/>
-    ]
+    const tutorialBoxes = config.tutorialGuideBoxes.map(settings => (a : boolean) => <TutorialGuideBox {...settings} active={a} onClick={onClick}/>)
 
     function onClick() {
         setActiveTutorialBox(i => i + 1);

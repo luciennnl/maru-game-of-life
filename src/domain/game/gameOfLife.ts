@@ -1,4 +1,5 @@
 import Grid, { Cell } from "../collections/grid";
+import GridUtil from "../collections/gridUtil";
 import GameConfiguration from "./gameConfiguration";
 
 const overpopulationThreshold = 4
@@ -40,7 +41,7 @@ class GameOfLife {
         return cloned;
     }
     protected getAliveNeighbourCount(cell : Cell<CellStatus>) : number {
-        return this.grid.neighbourCountWithPredicate(cell, cell => cell.value === CellStatus.ALIVE);
+        return GridUtil.getInstance().neighbourCountWithPredicate(this.grid,cell, cell => cell.value === CellStatus.ALIVE);
     }
 
     protected checkDeadCell(cell : Cell<CellStatus>) : boolean {
@@ -57,7 +58,7 @@ class GameOfLife {
 
     protected set grid(toSet : Grid<CellStatus>) {
         this._grid = toSet;
-    } 
+    }
 }
 
 export default GameOfLife;

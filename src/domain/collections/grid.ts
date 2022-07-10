@@ -1,4 +1,3 @@
-const neighbourOffset = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]]
 interface Cell<T> {
     row: number;
     col: number;
@@ -58,26 +57,6 @@ class Grid<T> {
                 yield this.getCell(row, col);
             }
         }
-    }
-
-    public *neighbours(cell : Cell<T>) : IterableIterator<Cell<T>> {
-        let nRow, nCol;
-        for (let offset of neighbourOffset) {
-            nRow = cell.row + offset[0];
-            nCol = cell.col + offset[1];
-            if (!this.inBound(nRow, nCol)) continue;
-            yield this.getCell(nRow, nCol);
-        }
-    }
-
-    public neighbourCountWithPredicate(cell : Cell<T>, predicate : (cell : Cell<T>) => boolean) : number {
-        var cnt = 0;
-        for (let n of this.neighbours(cell)) {
-            if (predicate(this.getCell(n.row, n.col))) {
-                ++cnt;
-            }
-        }
-        return cnt;
     }
 
     public inBound(row : number, col : number) : boolean {
