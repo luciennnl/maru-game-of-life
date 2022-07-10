@@ -4,10 +4,17 @@ import GameConfiguration from "./gameConfiguration";
 const overpopulationThreshold = 4
 const birthValue = 3
 const deathThreshold = 1
+
+enum GameStatus {
+    STARTED,
+    STOPPED
+}
+
 enum CellStatus {
     ALIVE,
     DEAD
 }
+
 class GameOfLife {
     private _grid: Grid<CellStatus>;
     public constructor() {
@@ -27,7 +34,12 @@ class GameOfLife {
 
         this._grid = newGrid;
     }
-
+    public static clone(original : GameOfLife) : GameOfLife {
+        let cloned = new GameOfLife();
+        cloned.grid = Grid.clone(original.grid);
+        console.log(cloned.grid === original.grid);
+        return cloned;
+    }
     protected getAliveNeighbourCount(cell : Cell<CellStatus>) : number {
         return this.grid.neighbourCountWithPredicate(cell, cell => cell.value === CellStatus.ALIVE);
     }
@@ -40,10 +52,14 @@ class GameOfLife {
         return (this.getAliveNeighbourCount(cell)  <= deathThreshold) || (this.getAliveNeighbourCount(cell)  >= overpopulationThreshold);
     }
 
-    get grid() : Grid<CellStatus> {
+    public get grid() : Grid<CellStatus> {
         return this._grid;
     }
+
+    protected set grid(toSet : Grid<CellStatus>) {
+        this._grid = toSet;
+    } 
 }
 
 export default GameOfLife;
-export { CellStatus };
+export { GameStatus, CellStatus };

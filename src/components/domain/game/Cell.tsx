@@ -1,8 +1,7 @@
-import React, { FC, useContext, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import { CellStatus } from '../../../domain/game/gameOfLife';
-import { GameContext } from './Game';
 import './Cell.css';
-
+import { useGameDispatch, useGameSelector } from '../../../domain/game/store/hooks';
 interface CellProps {
     row: number;
     col: number;
@@ -10,7 +9,8 @@ interface CellProps {
 
 const Cell:FC<CellProps> = (props) => {
     const [status, setStatus] = useState<CellStatus>(CellStatus.DEAD);
-    const gameContext = useContext(GameContext);
+    const dispatch = useGameDispatch();
+    const gameState = useGameSelector(state => state.gameState);
     const firstLoad = useRef<boolean>(true);
 
     const setStatusWrapper = (value: CellStatus) : void => {
@@ -20,19 +20,20 @@ const Cell:FC<CellProps> = (props) => {
 
     const onClick = () => {
         let newStatus = status === CellStatus.ALIVE ? CellStatus.DEAD : CellStatus.ALIVE;
-        if (gameContext === null) {
-            return;
-        }
 
-        let grid = gameContext.game.grid;
-        grid.setCell(grid.getCell(props.row, props.col), newStatus);
+        let grid = gameState.grid;
+        dispatch({
+            type: 'changecell', 
+            cell: grid.getCell(props.row, props.col), 
+            value: newStatus
+        });
 
         setStatusWrapper(newStatus);
     }
 
     useEffect(() => {
-        gameContext !== null && setStatus(gameContext.game.grid.getCell(props.row, props.col).value)
-    }, [gameContext, props.row, props.col]);
+        setStatus(gameState.grid.getCell(props.row, props.col).value)
+    }, [gameState, props.row, props.col]);
     
     return <div className={`cell pointer ${ status === CellStatus.ALIVE ? "cell-alive" : firstLoad.current ? "" : "cell-exit"}`} onClick={onClick} >
 

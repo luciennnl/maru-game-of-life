@@ -1,12 +1,16 @@
-import './App.css';
+import React from 'react';
 import Game from './components/domain/game/Game';
 import TitleBanner from './components/structural/titleBanner/TitleBanner';
-
+import ContextProvider from './components/util/ContextProvider';
+import store from './domain/game/store/gameStore';
+import './App.css';
 function App() {
   return (
     <div className="App">
       <TitleBanner title="Maru Game of Life" subtitle="A simulator for the famous Conway's Game of Life"/>
-      <Game/>
+      <ContextProvider store={store}>
+        <Game/>
+      </ContextProvider>
     </div>
   );
 }
