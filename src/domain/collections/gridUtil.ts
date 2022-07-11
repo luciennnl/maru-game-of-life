@@ -1,30 +1,44 @@
-import Grid, { Cell } from "./grid";
-const neighbourOffset = [[-1, -1], [-1, 0], [-1, 1], [0, -1], [0, 1], [1, -1], [1, 0], [1, 1]];
+import Grid, {
+    Cell
+} from "./grid";
 
-class GridUtil {
-    private static instance : GridUtil | null = null;
-    private constructor() {}
+const neighbourOffset = [
+    [-1, -1],
+    [-1, 0],
+    [-1, 1],
+    [0, -1],
+    [0, 1],
+    [1, -1],
+    [1, 0],
+    [1, 1]
+];
 
-    public static getInstance() : GridUtil {
-        if (GridUtil.instance === null) {
-            GridUtil.instance = new GridUtil();
-        }
-        return GridUtil.instance;
+class GridUtil < K > {
+
+    private grid : Grid < K >;
+
+    private constructor(grid : Grid < K > ) {
+        this.grid = grid;
     }
-    public *neighbours<T>(grid : Grid<T>, cell : Cell<T>) : IterableIterator<Cell<T>> {
+
+    public static getInstance<T>(grid: Grid < T >): GridUtil < T > {
+        return new GridUtil < T > (grid);
+    }
+
+    public * neighbours (cell: Cell < K > ): IterableIterator < Cell < K >> {
         let nRow, nCol;
         for (let offset of neighbourOffset) {
             nRow = cell.row + offset[0];
             nCol = cell.col + offset[1];
-            if (!grid.inBound(nRow, nCol)) continue;
-            yield grid.getCell(nRow, nCol);
+            if (!this.grid.inBound(nRow, nCol)) continue;
+            yield this.grid.getCell(nRow, nCol);
         }
     }
 
-    public neighbourCountWithPredicate<T>(grid : Grid<T>, cell : Cell<T>, predicate : (cell : Cell<T>) => boolean) : number {
+    public neighbourCountWithPredicate (cell: Cell < K > , predicate: (cell: Cell < K > ) => boolean): number {
         var cnt = 0;
-        for (let n of this.neighbours(grid, cell)) {
-            if (predicate(grid.getCell(n.row, n.col))) {
+        for (let n of this.neighbours(cell)) {
+            if (predicate(this.grid.getCell(n.row, n.col))) {
                 ++cnt;
             }
         }

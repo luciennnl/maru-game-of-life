@@ -41,7 +41,7 @@ class GameOfLife {
         return cloned;
     }
     protected getAliveNeighbourCount(cell : Cell<CellStatus>) : number {
-        return GridUtil.getInstance().neighbourCountWithPredicate(this.grid,cell, cell => cell.value === CellStatus.ALIVE);
+        return GridUtil.getInstance(this._grid).neighbourCountWithPredicate(cell, cell => cell.value === CellStatus.ALIVE);
     }
 
     protected checkDeadCell(cell : Cell<CellStatus>) : boolean {

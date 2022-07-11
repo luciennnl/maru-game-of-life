@@ -1,23 +1,30 @@
-import GameOfLife, { CellStatus, GameStatus } from "../gameOfLife";
-import { configureStore } from "@reduxjs/toolkit";
-import { Cell } from "../../collections/grid";
+import GameOfLife, {
+    CellStatus,
+    GameStatus
+} from "../gameOfLife";
+import {
+    configureStore
+} from "@reduxjs/toolkit";
+import {
+    Cell
+} from "../../collections/grid";
 interface GameStateActionTick {
-    type: 'tick'
+    type: 'tick';
 }
 
 interface GameStateActionReset {
-    type: 'reset'
+    type: 'reset';
 }
 
 interface GameStateActionChangeCell {
-    type: 'changecell'
-    cell: Cell<CellStatus>
-    value: CellStatus
+    type: 'changecell';
+    cell: Cell < CellStatus > ;
+    value: CellStatus;
 }
 
-type GameStateAction = GameStateActionTick | GameStateActionReset | GameStateActionChangeCell
+type GameStateAction = GameStateActionTick | GameStateActionReset | GameStateActionChangeCell;
 
-const gameStateReducer = (state : GameOfLife = new GameOfLife(), action : GameStateAction) : GameOfLife => {
+const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStateAction): GameOfLife => {
     let newState = GameOfLife.clone(state);
     switch (action.type) {
         case 'tick':
@@ -35,16 +42,16 @@ const gameStateReducer = (state : GameOfLife = new GameOfLife(), action : GameSt
 }
 
 interface GameStatusActionStart {
-    type: 'start'
+    type: 'start';
 }
 
 interface GameStatusActionStop {
-    type: 'stop'
+    type: 'stop';
 }
 
-type GameStatusAction = GameStatusActionStart | GameStatusActionStop
+type GameStatusAction = GameStatusActionStart | GameStatusActionStop;
 
-const gameStatusReducer = (state: GameStatus = GameStatus.STOPPED, action : GameStatusAction) : GameStatus => {
+const gameStatusReducer = (state: GameStatus = GameStatus.STOPPED, action: GameStatusAction): GameStatus => {
     switch (action.type) {
         case 'start':
             return GameStatus.STARTED;
@@ -66,5 +73,5 @@ const store = configureStore({
 })
 
 export default store;
-export type RootState = ReturnType<typeof store.getState>
+export type RootState = ReturnType < typeof store.getState >;
 export type GameDispatch = typeof store.dispatch;
