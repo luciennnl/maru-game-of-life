@@ -16,13 +16,18 @@ interface GameStateActionReset {
     type: 'reset';
 }
 
+interface GameStateActionHardReset {
+    type: 'hardreset';
+    isMobile: boolean;
+}
+
 interface GameStateActionChangeCell {
     type: 'changecell';
     cell: Cell < CellStatus > ;
     value: CellStatus;
 }
 
-type GameStateAction = GameStateActionTick | GameStateActionReset | GameStateActionChangeCell;
+type GameStateAction = GameStateActionTick | GameStateActionReset | GameStateActionHardReset | GameStateActionChangeCell;
 
 const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStateAction): GameOfLife => {
     let newState = GameOfLife.clone(state);
@@ -36,6 +41,8 @@ const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStat
         case 'changecell':
             newState.grid.setCell(action.cell, action.value);
             return newState;
+        case 'hardreset':
+            return new GameOfLife(action.isMobile);
         default:
             return newState;
     }
