@@ -11,6 +11,8 @@
   --theme-dark-transparent: rgb(30, 30, 33, 0.6);
   --theme-dark-extra: #141414;
   --font-main: font-family: 'Quicksand', sans-serif;
+  --font-light: 200;
+  --font-bold: 700;
   height: 100vh;
 
   display: flex;

@@ -14,9 +14,11 @@
 }
 
 .title-title {
-
+    font-weight: var(--font-bold);
 }
 
 .title-subtitle {
-
+    padding: 0 15px;
+    font-weight: var(--font-light);
+    text-align: center;
 }
