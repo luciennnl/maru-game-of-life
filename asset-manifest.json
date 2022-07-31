@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/maru-game-of-life/static/css/main.788d3959.css",
-    "main.js": "/maru-game-of-life/static/js/main.f4ccda3e.js",
+    "main.css": "/maru-game-of-life/static/css/main.34e61b70.css",
+    "main.js": "/maru-game-of-life/static/js/main.2bce8955.js",
     "static/js/787.47130b7c.chunk.js": "/maru-game-of-life/static/js/787.47130b7c.chunk.js",
     "index.html": "/maru-game-of-life/index.html",
-    "main.788d3959.css.map": "/maru-game-of-life/static/css/main.788d3959.css.map",
-    "main.f4ccda3e.js.map": "/maru-game-of-life/static/js/main.f4ccda3e.js.map",
+    "main.34e61b70.css.map": "/maru-game-of-life/static/css/main.34e61b70.css.map",
+    "main.2bce8955.js.map": "/maru-game-of-life/static/js/main.2bce8955.js.map",
     "787.47130b7c.chunk.js.map": "/maru-game-of-life/static/js/787.47130b7c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.788d3959.css",
-    "static/js/main.f4ccda3e.js"
+    "static/css/main.34e61b70.css",
+    "static/js/main.2bce8955.js"
   ]
 }
