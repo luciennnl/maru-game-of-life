@@ -35,9 +35,12 @@ const Cell:FC<CellProps> = (props) => {
         setStatus(gameState.grid.getCell(props.row, props.col).value)
     }, [gameState, props.row, props.col]);
     
-    return <div className={`cell pointer ${ status === CellStatus.ALIVE ? "cell-alive" : firstLoad.current ? "" : "cell-exit"}`} onClick={onClick} >
-
-    </div>
+    return <div 
+        className={`cell pointer ${ status === CellStatus.ALIVE ? 
+            "cell-alive" : firstLoad.current ? 
+                "" : "cell-exit"}`} 
+        onClick={onClick}
+    />
 }
 
 export default Cell;

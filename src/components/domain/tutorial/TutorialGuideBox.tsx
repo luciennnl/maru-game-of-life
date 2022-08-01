@@ -25,12 +25,13 @@ const TutorialGuideBox : FC<TutorialGuideBoxProps> = (props) => {
     return <>
         <div 
             className={`tutorial-guide-box ${props.active && 'fadein'}`}
-            onClick={props.onClick}
+            onClick={ props.onClick }
             style={{
                 left: props.left, 
                 top: props.top
-            }} >
-            {props.text}
+            }} 
+        >
+            { props.text }
         </div>
     </>
 }

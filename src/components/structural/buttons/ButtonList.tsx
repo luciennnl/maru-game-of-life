@@ -7,9 +7,13 @@ interface ButtonListProps {
 }
 
 const ButtonList:FC<ButtonListProps> = (props) => {
-    return <section className='button-list'>
+    return <section 
+        className='button-list'>
         { props.buttons ? props.buttons.map(b => 
-            <Button key={b.name} {...b}/>) : ''
+            <Button 
+                key={ b.name } 
+                {...b}
+            />) : ''
         }
     </section>
 }

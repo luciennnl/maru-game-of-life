@@ -14,8 +14,15 @@ const PopupMenu:FC<PopupMenuProps> = (props) => {
     const toggleMenu = () : void => {
         setActive(a => !a);
     }
-    return <section className={`popup-menu ${active ? 'popup-menu-active' : ''}`}>
-        <MdChangeHistory className='pointer' onClick={toggleMenu} color='white' size={openButtonSize}/>
+    return <section 
+        className={`popup-menu ${active ? 'popup-menu-active' : ''}`}
+    >
+        <MdChangeHistory 
+            className='pointer' 
+            onClick={ toggleMenu } 
+            color='white' 
+            size={ openButtonSize }
+        />
         { props.children }
     </section>
 }

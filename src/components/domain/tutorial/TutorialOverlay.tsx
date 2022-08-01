@@ -17,7 +17,8 @@ const TutorialOverlay : FC = () => {
         return <></>
     }
 
-    return <section id='tutorial-overlay' >
+    return <section 
+        id='tutorial-overlay'>
         { tutorialBoxes.map((tb, i) => tb(activeTutorialBox === i)) }
     </section>
 }

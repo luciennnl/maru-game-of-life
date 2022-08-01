@@ -19,7 +19,12 @@ interface ButtonProps {
 }
 
 const Button : FC<ButtonProps> = (props) => {
-    return <button className={`button ${props.style || ButtonStyle.DEFAULT} ${props.size || ButtonSize.MEDIUM}`} onClick={props.callback}>{ props.name }</button>
+    return <button 
+        className={`button ${props.style || ButtonStyle.DEFAULT} ${props.size || ButtonSize.MEDIUM}`} 
+        onClick={props.callback}
+    >
+        { props.name }
+    </button>
 }
 
 export default Button;

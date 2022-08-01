@@ -56,11 +56,13 @@ const Game : FC = () => {
                 <Cell 
                     row={ Math.floor(idx / cols) } 
                     col={ idx % cols } 
-                    key={idx}/>) }
+                    key={ idx }
+                />) 
+            }
         </section>
         <PopupMenu>
             <ButtonList 
-                buttons={functions}/>
+                buttons={ functions }/>
         </PopupMenu>
     </>
 }
