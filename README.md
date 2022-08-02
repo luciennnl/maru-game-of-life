@@ -1,6 +1,7 @@
 <h1 align='center'>Maru Game Of Life</h1>
-
-<img align='center' src='/misc/simulation.gif' alt='simulation gif'/>
+<div align='center'>
+  <img align='center' src='/misc/simulation.gif' alt='simulation gif'/>
+</div>
 <p align='center'>A web app simulator for Conway's Game of Life made with React.</p>
 
 <hr/>
