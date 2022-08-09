@@ -8,6 +8,7 @@ import { ButtonProps, ButtonStyle } from '../../structural/buttons/Button';
 import { useMemo } from 'react';
 import { useGameDispatch, useGameSelector } from '../../../domain/game/store/hooks';
 
+const TICKS_PER_SECOND = 2;
 const Game : FC = () => {
     const gameStatus = useGameSelector(state => state.gameStatus);
     const gameState = useGameSelector(state => state.gameState);
@@ -21,7 +22,7 @@ const Game : FC = () => {
         return [
         gameStatus === GameStatus.STOPPED ? {
             callback: () => {
-                gameTick.current = window.setInterval(tick, 500);
+                gameTick.current = window.setInterval(tick, 1000 / TICKS_PER_SECOND);
                 dispatch({ type: 'start' });
             },
             name: 'Start'
@@ -34,6 +35,7 @@ const Game : FC = () => {
         },
         {
             callback: () => {
+                clearInterval(gameTick.current);
                 dispatch({ type: 'reset' });
                 dispatch({ type: 'stop' });
             },
