@@ -4,7 +4,10 @@ import './Game.css';
 import { useGameSelector } from '../../../domain/game/store/hooks';
 import GameFunctions from './GameFunctions';
 
-
+/**
+ * React component representing the main Game of Life simulation
+ * @returns JSX
+ */
 const Game : FC = () => {
     const {rows, cols} = useGameSelector(state => state.gameState).grid.gridSize;
     

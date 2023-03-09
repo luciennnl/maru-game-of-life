@@ -2,10 +2,18 @@ import React, { FC, ReactNode, useEffect } from "react";
 import config from "../../../domain/game/gameConfiguration";
 import { useGameDispatch } from "../../../domain/game/store/hooks";
 
+/**
+ * Props for the MobileWrapper component
+ */
 interface MobileWrapperProps {
     children?: ReactNode;
 }
 
+/**
+ * React component representing a utility wrapper for responsive screen adjusting
+ * @param props MobileWrapperProps
+ * @returns JSX
+ */
 const MobileWrapper : FC<MobileWrapperProps> = (props) => {
     const dispatch = useGameDispatch();
 

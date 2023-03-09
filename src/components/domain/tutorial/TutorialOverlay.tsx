@@ -3,7 +3,10 @@ import config from "../../../domain/game/gameConfiguration";
 import TutorialGuideBox from "./TutorialGuideBox";
 import './TutorialOverlay.css';
 
-
+/**
+ * React component representing the tutorial overlay displayed at the start of the game
+ * @returns JSX
+ */
 const TutorialOverlay : FC = () => {
     const [activeTutorialBox, setActiveTutorialBox] = useState(0);
 

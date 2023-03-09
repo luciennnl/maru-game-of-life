@@ -9,24 +9,39 @@ import {
     Cell
 } from "../../collections/grid";
 
+/**
+ * Type representing an action to create the next generation of game cells
+ */
 interface GameStateActionTick {
     type: 'tick';
 }
 
+/**
+ * Type representing an action to change the status of a game cell
+ */
 interface GameStateActionChangeCell {
     type: 'changecell';
     cell: Cell < CellStatus > ;
     value: CellStatus;
 }
 
+/**
+ * Type representing an action the reset the current game state
+ */
 interface GameStateActionReset {
     type: 'reset';
 }
 
+/**
+ * Type representing an action to create a new GameOfLife context
+ */
 interface GameStateActionHardReset {
     type: 'hardreset';
 }
 
+/**
+ * Type representing an action to change the target device type
+ */
 interface GameStateActionChangeDevice {
     type: 'changedevice';
     isMobile: boolean;
@@ -34,6 +49,12 @@ interface GameStateActionChangeDevice {
 
 type GameStateAction = GameStateActionTick | GameStateActionChangeCell | GameStateActionReset | GameStateActionHardReset | GameStateActionChangeDevice ;
 
+/**
+ * Reducer for the gamestate
+ * @param state a GameOfLife object representing the current game state
+ * @param action the action to execute
+ * @returns the new gamestate
+ */
 const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStateAction): GameOfLife => {
     let newState = GameOfLife.clone(state);
     switch (action.type) {
@@ -58,16 +79,31 @@ const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStat
     }
 }
 
+/**
+ * Type representing an action to start the game
+ */
 interface GameStatusActionStart {
     type: 'start';
 }
 
+/**
+ * Type representing an action to stop the game
+ */
 interface GameStatusActionStop {
     type: 'stop';
 }
 
+/**
+ * Type representing an action to control game status
+ */
 type GameStatusAction = GameStatusActionStart | GameStatusActionStop;
 
+/**
+ * Reducer for the game status
+ * @param state a GameStatus enum representing the current game state
+ * @param action the action to execute
+ * @returns the new game status
+ */
 const gameStatusReducer = (state: GameStatus = GameStatus.STOPPED, action: GameStatusAction): GameStatus => {
     switch (action.type) {
         case 'start':
@@ -79,6 +115,9 @@ const gameStatusReducer = (state: GameStatus = GameStatus.STOPPED, action: GameS
     }
 }
 
+/**
+ * Redux store for the Game of Life context
+ */
 const store = configureStore({
     reducer: {
         gameStatus: gameStatusReducer,

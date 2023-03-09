@@ -3,11 +3,19 @@ import { CellStatus } from '../../../domain/game/gameOfLife';
 import './Cell.css';
 import { useGameDispatch, useGameSelector } from '../../../domain/game/store/hooks';
 
+/**
+ * Props for the Cell component
+ */
 interface CellProps {
     row: number;
     col: number;
 }
 
+/**
+ * React representing a cell in the main grid map of the game
+ * @param props CellProps
+ * @returns JSX
+ */
 const Cell:FC<CellProps> = (props) => {
     const [status, setStatus] = useState<CellStatus>(CellStatus.DEAD);
     const dispatch = useGameDispatch();

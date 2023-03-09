@@ -2,6 +2,9 @@ import React from 'react';
 import { FC } from 'react';
 import './TutorialGuideBox.css';
 
+/**
+ * Enum representing the direction of the arrow indicator in the TutorialGuideBox
+ */
 enum ArrowDirection {
     TOP = 'arrow-up',
     RIGHT = 'arrow-right',
@@ -9,6 +12,9 @@ enum ArrowDirection {
     LEFT = 'arrow-left'
 }
 
+/**
+ * Props for the TutorialGuideBox component
+ */
 interface TutorialGuideBoxProps {
     text: string;
     left: string;
@@ -18,6 +24,11 @@ interface TutorialGuideBoxProps {
     arrow?: ArrowDirection
 }
 
+/**
+ * React component representing a tooltip that is shown in the game tutorial
+ * @param props TutorialGuideBoxProps
+ * @returns JSX
+ */
 const TutorialGuideBox : FC<TutorialGuideBoxProps> = (props) => {
     if (!props.active) {
         return <></>

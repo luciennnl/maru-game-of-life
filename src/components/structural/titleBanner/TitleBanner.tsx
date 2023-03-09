@@ -1,11 +1,19 @@
 import React, { FC } from 'react';
 import './TitleBanner.css';
 
+/**
+ * Props for the TitleBanner component
+ */
 interface TitleBannerProps {
     title: string;
     subtitle: string;
 }
 
+/**
+ * React component representing a title banner that covers the width of the containing element
+ * @param props TitleBannerProps
+ * @returns JSX
+ */
 const TitleBanner:FC<TitleBannerProps> = (props) => {
     return <section 
         className='title-banner'

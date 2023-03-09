@@ -5,8 +5,15 @@ import { ButtonProps, ButtonStyle } from "../../structural/buttons/Button";
 import ButtonList from "../../structural/buttons/ButtonList";
 import PopupMenu from "../../structural/popupMenu/PopupMenu";
 
+/**
+ * Constant representing how many times the game should update per second
+ */
 const TICKS_PER_SECOND = 2;
 
+/**
+ * React component representing the game menu for controlling the simulation
+ * @returns JSX
+ */
 const GameFunctions : FC = () => {
     const gameStatus = useGameSelector(state => state.gameStatus);
     const gameTick = useRef<number | undefined>(undefined);
