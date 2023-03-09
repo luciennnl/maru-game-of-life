@@ -14,7 +14,7 @@ Read up on the famous automaton:
 Any pushes to the main branch will automatically be deployed via GitHub pages.
 
 _Access the simulation now_:  
-https://luciennnl.github.io/maru-game-of-life/
+https://marutsuki.github.io/maru-game-of-life/
 
 ## Getting Started Locally
 ### Make sure you have Node.js installed on your device.
@@ -23,7 +23,7 @@ https://luciennnl.github.io/maru-game-of-life/
 
 First, clone/download the repository.
 
-After opening up the project directory, you need to run:
+After opening up the project directory, run:
 
 ```npm i```
 
