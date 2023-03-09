@@ -11,6 +11,7 @@ enum ButtonSize {
     MEDIUM = 'button-medium',
     LARGE = 'button-large'
 }
+
 interface ButtonProps {
     callback: () => void;
     name: string;

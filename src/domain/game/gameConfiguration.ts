@@ -22,7 +22,7 @@ const config = {
             key: 'tb0',
             left: '15%',
             top: '20%',
-            text: 'Welcome to Maru Game of Life! This is a short tutorial, click here to continue...'
+            text: 'Welcome to Maru Game of Life! This is a short tutorial, click on these tooltips to continue...'
         },
         {
             key: 'tb1',

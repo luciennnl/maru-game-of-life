@@ -3,6 +3,7 @@ interface Cell < T > {
     col: number;
     value: T;
 }
+
 class Grid < T > {
     private rows: number;
     private cols: number;

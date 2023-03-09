@@ -2,6 +2,7 @@ import React, { FC, useEffect, useRef, useState } from 'react';
 import { CellStatus } from '../../../domain/game/gameOfLife';
 import './Cell.css';
 import { useGameDispatch, useGameSelector } from '../../../domain/game/store/hooks';
+
 interface CellProps {
     row: number;
     col: number;

@@ -5,6 +5,7 @@ import { useGameDispatch } from "../../../domain/game/store/hooks";
 interface MobileWrapperProps {
     children?: ReactNode;
 }
+
 const MobileWrapper : FC<MobileWrapperProps> = (props) => {
     const [isMobile, setIsMobile] = useState<boolean>(false);
     const dispatch = useGameDispatch();

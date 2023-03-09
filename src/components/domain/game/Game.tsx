@@ -9,6 +9,7 @@ import { useMemo } from 'react';
 import { useGameDispatch, useGameSelector } from '../../../domain/game/store/hooks';
 
 const TICKS_PER_SECOND = 2;
+
 const Game : FC = () => {
     const gameStatus = useGameSelector(state => state.gameStatus);
     const gameState = useGameSelector(state => state.gameState);

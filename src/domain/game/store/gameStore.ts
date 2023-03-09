@@ -8,6 +8,7 @@ import {
 import {
     Cell
 } from "../../collections/grid";
+
 interface GameStateActionTick {
     type: 'tick';
 }

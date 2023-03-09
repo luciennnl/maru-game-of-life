@@ -5,6 +5,7 @@ interface TitleBannerProps {
     title: string;
     subtitle: string;
 }
+
 const TitleBanner:FC<TitleBannerProps> = (props) => {
     return <section 
         className='title-banner'

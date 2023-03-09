@@ -21,8 +21,6 @@ enum CellStatus {
 class GameOfLife {
     private _grid: Grid <CellStatus> ;
     
-    public constructor();
-    public constructor(isMobile : boolean);
     public constructor(isMobile? : boolean) {
         let {
             rows,
@@ -48,15 +46,15 @@ class GameOfLife {
         cloned.grid = Grid.clone(original.grid);
         return cloned;
     }
-    protected getAliveNeighbourCount(cell: Cell <CellStatus> ): number {
+    private getAliveNeighbourCount(cell: Cell <CellStatus> ): number {
         return GridUtil.getInstance(this._grid).neighbourCountWithPredicate(cell, cell => cell.value === CellStatus.ALIVE);
     }
 
-    protected checkDeadCell(cell: Cell <CellStatus> ): boolean {
+    private checkDeadCell(cell: Cell <CellStatus> ): boolean {
         return (this.getAliveNeighbourCount(cell) === birthValue);
     }
 
-    protected checkAliveCell(cell: Cell <CellStatus> ): boolean {
+    private checkAliveCell(cell: Cell <CellStatus> ): boolean {
         return (this.getAliveNeighbourCount(cell) <= deathThreshold) || (this.getAliveNeighbourCount(cell) >= overpopulationThreshold);
     }
 
