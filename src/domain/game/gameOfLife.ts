@@ -53,9 +53,9 @@ class GameOfLife {
         let newGrid = Grid.clone <CellStatus> (this.grid);
         for (let cell of this.grid.cells()) {
             if (cell.value === CellStatus.ALIVE) {
-                this.checkAliveCell(cell) && newGrid.setCell(cell, CellStatus.DEAD);
+                this.checkAliveCell(cell) && newGrid.setValue(cell.row, cell.col, CellStatus.DEAD);
             } else {
-                this.checkDeadCell(cell) && newGrid.setCell(cell, CellStatus.ALIVE);
+                this.checkDeadCell(cell) && newGrid.setValue(cell.row, cell.col, CellStatus.ALIVE);
             }
         }
 

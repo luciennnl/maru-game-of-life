@@ -5,9 +5,6 @@ import GameOfLife, {
 import {
     configureStore
 } from "@reduxjs/toolkit";
-import {
-    Cell
-} from "../../collections/grid";
 
 /**
  * Type representing an action to create the next generation of game cells
@@ -21,7 +18,8 @@ interface GameStateActionTick {
  */
 interface GameStateActionChangeCell {
     type: 'changecell';
-    cell: Cell < CellStatus > ;
+    row: number;
+    col: number;
     value: CellStatus;
 }
 
@@ -62,7 +60,7 @@ const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStat
             newState.tick();
             return newState;
         case 'changecell':
-            newState.grid.setCell(action.cell, action.value);
+            newState.grid.setValue(action.row, action.col, action.value);
             return newState;
         case 'reset':
             newState.grid.resetGrid();
@@ -115,6 +113,11 @@ const gameStatusReducer = (state: GameStatus = GameStatus.STOPPED, action: GameS
     }
 }
 
+interface GameStoreState {
+    gameStatus: GameStatus,
+    gameState: GameOfLife
+}
+
 /**
  * Redux store for the Game of Life context
  */
@@ -131,3 +134,4 @@ const store = configureStore({
 export default store;
 export type RootState = ReturnType < typeof store.getState >;
 export type GameDispatch = typeof store.dispatch;
+export type { GameStoreState };

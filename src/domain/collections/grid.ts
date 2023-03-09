@@ -8,6 +8,14 @@ interface Cell < T > {
 }
 
 /**
+ * Type representing the dimensions of a grid
+ */
+interface Dimension {
+    rows: number;
+    cols: number;
+}
+
+/**
  * Class representing a Grid-like data structure, containing cells of type T
  */
 class Grid < T > {
@@ -102,9 +110,19 @@ class Grid < T > {
     public resetGrid(): void {
         for (let row = 0; row < this.rows; ++row) {
             for (let col = 0; col < this.cols; ++col) {
-                this.setCell(this.getCell(row, col), this.defaultValue);
+                this.setValue(row, col, this.defaultValue);
             }
         }
+    }
+
+    /**
+     * Getter for the value of a cell in the grid
+     * @param row the row of the cell
+     * @param col the column of th cell
+     * @returns the value of the target cell
+     */
+    public getValue(row: number, col: number): T {
+        return this.data[row][col];
     }
 
     /**
@@ -122,12 +140,20 @@ class Grid < T > {
     }
 
     /**
+     * Setter for the value of a cell in the grid
+     * @param row the row of the target cell
+     * @param col the column of the target cell
+     * @param value the value to set
+     */
+    public setValue(row: number, col: number, value: T): void {
+        this.data[row][col] = value;
+    }
+    /**
      * Setter for a particular cell in the grid
      * @param cell the cell to set
-     * @param value the new value of the cell
      */
-    public setCell(cell: Cell < T > , value: T): void {
-        this.data[cell.row][cell.col] = value;
+    public setCell(cell: Cell < T >): void {
+        this.data[cell.row][cell.col] = cell.value;
     }
 
     /**
@@ -143,5 +169,6 @@ class Grid < T > {
 
 export default Grid;
 export {
-    Cell
+    Cell,
+    Dimension
 };
