@@ -19,14 +19,15 @@ enum CellStatus {
 }
 
 class GameOfLife {
-    private _grid: Grid <CellStatus> ;
-    
+    private _grid: Grid <CellStatus>;
+    private _isMobile: boolean;
     public constructor(isMobile? : boolean) {
         let {
             rows,
             cols
         } = isMobile ? GameConfiguration.gameMapSizeMobile : GameConfiguration.gameMapSize;
         this._grid = new Grid <CellStatus> (rows, cols, CellStatus.DEAD);
+        this._isMobile = isMobile || false;
     }
 
     public tick(): void {
@@ -42,7 +43,7 @@ class GameOfLife {
         this._grid = newGrid;
     }
     public static clone(original: GameOfLife): GameOfLife {
-        let cloned = new GameOfLife();
+        let cloned = new GameOfLife(original._isMobile);
         cloned.grid = Grid.clone(original.grid);
         return cloned;
     }
@@ -60,6 +61,10 @@ class GameOfLife {
 
     public get grid(): Grid <CellStatus> {
         return this._grid;
+    }
+
+    public get isMobile(): boolean {
+        return this._isMobile;
     }
 
     protected set grid(toSet: Grid <CellStatus> ) {

@@ -13,22 +13,26 @@ interface GameStateActionTick {
     type: 'tick';
 }
 
-interface GameStateActionReset {
-    type: 'reset';
-}
-
-interface GameStateActionHardReset {
-    type: 'hardreset';
-    isMobile: boolean;
-}
-
 interface GameStateActionChangeCell {
     type: 'changecell';
     cell: Cell < CellStatus > ;
     value: CellStatus;
 }
 
-type GameStateAction = GameStateActionTick | GameStateActionReset | GameStateActionHardReset | GameStateActionChangeCell;
+interface GameStateActionReset {
+    type: 'reset';
+}
+
+interface GameStateActionHardReset {
+    type: 'hardreset';
+}
+
+interface GameStateActionChangeDevice {
+    type: 'changedevice';
+    isMobile: boolean;
+}
+
+type GameStateAction = GameStateActionTick | GameStateActionChangeCell | GameStateActionReset | GameStateActionHardReset | GameStateActionChangeDevice ;
 
 const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStateAction): GameOfLife => {
     let newState = GameOfLife.clone(state);
@@ -36,14 +40,19 @@ const gameStateReducer = (state: GameOfLife = new GameOfLife(), action: GameStat
         case 'tick':
             newState.tick();
             return newState;
-        case 'reset':
-            newState.grid.resetGrid();
-            return newState;
         case 'changecell':
             newState.grid.setCell(action.cell, action.value);
             return newState;
+        case 'reset':
+            newState.grid.resetGrid();
+            return newState;
         case 'hardreset':
-            return new GameOfLife(action.isMobile);
+            return new GameOfLife();
+        case 'changedevice':
+            if (newState.isMobile !== action.isMobile) {
+                return new GameOfLife(action.isMobile);
+            }
+            return newState;
         default:
             return newState;
     }
